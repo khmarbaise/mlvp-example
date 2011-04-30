@@ -185,7 +185,7 @@
       <plugin>
         <groupId>com.soebes.maven.plugins.mlv</groupId>
         <artifactId>maven-license-verifier-plugin</artifactId>
-        <version>0.3-SNAPSHOT</version>
+        <version>0.3</version>
           <configuration>
             <excludes>
               <exclude>org.antlr:antlr-runtime:jar:3.3</exclude>
