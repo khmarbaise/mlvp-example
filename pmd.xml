@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.2" timestamp="2011-04-30T23:57:39.862">
+<file name="/home/kama/ws-git/mlvp-example/src/main/java/com/soebes/subversion/sapm/FileName.java">
+<violation beginline="60" endline="62" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.subversion.sapm" class="FileName" method="init" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+</file>
+</pmd>
