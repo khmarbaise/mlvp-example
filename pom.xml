@@ -1,15 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.soebes.smpp</groupId>
     <artifactId>smpp</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
   </parent>
 
   <groupId>com.soebes.subversion.sapm</groupId>
   <artifactId>sapm</artifactId>
-  <version>0.4-SNAPSHOT</version>
+  <version>0.5-SNAPSHOT</version>
 
   <name>Subversion Authentication Parse Module</name>
   <description>Will read the Subversion authentication file and give you
@@ -50,16 +50,13 @@
   <properties>
     <maven-license-plugin.version>1.9.0</maven-license-plugin.version>
     <antlr.version>3.3</antlr.version>
-    <project.reporting.outputEncoding>UTF-8
-    </project.reporting.outputEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <scm>
-    <developerConnection>scm:git:git@github.com:khmarbaise/sapm.git
-    </developerConnection>
-    <connection>scm:git:git://github.com/khmarbaise/sapm.git
-    </connection>
+    <developerConnection>scm:git:git@github.com:khmarbaise/sapm.git</developerConnection>
+    <connection>scm:git:git://github.com/khmarbaise/sapm.git</connection>
     <url>https://github.com/khmarbaise/sapm</url>
   </scm>
 
@@ -145,15 +142,33 @@
         <artifactId>maven-project-info-reports-plugin</artifactId>
       </plugin>
       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>2.5</version>
+          <configuration>
+          <excludeRoots>${project.build.outputDirectory}/generated-sources</excludeRoots>
+          </configuration>
+      </plugin>
+      <plugin>
         <groupId>com.soebes.maven.plugins.mlv</groupId>
-        <artifactId>maven-licenses-verifier-plugin</artifactId>
-        <version>0.2-SNAPSHOT</version>
+        <artifactId>maven-license-verifier-plugin</artifactId>
+        <version>0.3</version>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+      <plugin>
+        <groupId>com.soebes.maven.plugins.mlv</groupId>
+        <artifactId>maven-license-verifier-plugin</artifactId>
+        <version>0.3</version>
         <executions>
           <execution>
-            <phase>prepare-package</phase>
-            <goals><goal>verify</goal></goals>
+            <id>license-verifier</id>
+            <goals>
+              <goal>verify</goal>
+            </goals>
             <configuration>
-              <verbose>true</verbose>
+              <strictChecking>true</strictChecking>
               <excludes>
                 <exclude>org.antlr:antlr-runtime:jar:3.3</exclude>
               </excludes>
@@ -161,19 +176,28 @@
           </execution>
         </executions>
       </plugin>
-    </plugins>
+      </plugins>
+    </pluginManagement>
   </build>
 
   <reporting>
     <plugins>
       <plugin>
+        <groupId>com.soebes.maven.plugins.mlv</groupId>
+        <artifactId>maven-license-verifier-plugin</artifactId>
+        <version>0.3-SNAPSHOT</version>
+          <configuration>
+            <excludes>
+              <exclude>org.antlr:antlr-runtime:jar:3.3</exclude>
+            </excludes>
+          </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-changes-plugin</artifactId>
-        <version>2.3</version>
         <configuration>
           <issueLinkTemplatePerSystem>
-            <default>https://github.com/khmarbaise/sapm/issues/%ISSUE%
-            </default>
+            <default>https://github.com/khmarbaise/sapm/issues/%ISSUE% </default>
           </issueLinkTemplatePerSystem>
         </configuration>
         <reportSets>
@@ -184,11 +208,6 @@
           </reportSet>
         </reportSets>
       </plugin>
-      <plugin>
-        <groupId>com.soebes.maven.plugins.mlv</groupId>
-        <artifactId>maven-licenses-verifier-plugin</artifactId>
-        <version>0.2-SNAPSHOT</version>
-      </plugin>
     </plugins>
   </reporting>
 
@@ -196,7 +215,7 @@
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>5.14.6</version>
+      <version>6.0.1</version>
       <scope>test</scope>
     </dependency>
 
@@ -207,6 +226,5 @@
     </dependency>
   </dependencies>
 
-  <!-- mvn -Darguments="-Dgpg.passphrase=xxxx" release:perform see parent
-    pom. -->
+  <!-- mvn -Darguments="-Dgpg.passphrase=xxxx" release:perform see parent pom. -->
 </project>
